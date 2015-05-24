@@ -1,60 +1,33 @@
 #include <stdafx.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <windows.h>
 
-void fun1();
-void fun2();
-void fun3();
-void fun4();
-
-typedef void (*PFNPROC)(); // void (*g_fnAry[4])() = {}
-PFNPROC g_fnAry[4] = 
-{
-  fun1,
-  fun2,
-  fun3,
-  fun4
-};
-
-void InitAry(PFNPROC pfnAry[], int nCount);
+void EncryptFun();
 
 int main()
 {
-  // void (*PFNaRY[4])() = {NULL};
-  PFNPROC pfnAry[4] = {0};
+  DWORD dwOld;
+  VirtualProtect(EncryptFun, 0x1, PAGE_EXECUTE_READWRITE, &dwOld);
+  char* PFNPROC = (char*)EncryptFun;
 
-  InitAry(pfnAry, sizeof(pfnAry) / sizeof(pfnAry[0]));
-
-  for(int i = 0; i < sizeof(pfnAry) / sizeof(pfnAry[0]); i++)
-  {
-    pfnAry[i]();
-  }
+#ifdef _DEBUG
+  PFNPROC = (char*)((int)EncryptFun + *(int*)(PFNPROC + 1) + 5);
+#endif
+  // *PFNPROC = '\0xCC';
+  EncryptFun();
 
   return 0; 
 }
 
-void fun1()
+void EncryptFun()
 {
-  puts("³Ô·¹");
-}
-void fun2()
-{
-  puts("Ë¯¾õ");
-}
-void fun3()
-{
-  puts("À­Êº");
-}
-void fun4()
-{
-  puts("ÈöÄò");
-}
-void InitAry(/*void (*pfnAry[])()*/PFNPROC pfnAry[], int nCount)
-{
-  int nId;
-  puts("Make you choice 1:³Ô·¹;2:Ë¯¾õ;3:À­Êº;4:ÈöÄò");
-  for(int i = 0; i < 4; i++)
+  int nRandom = 1;
+  srand((unsigned)time(NULL));
+  for(int i = 0; i < 10; i++)
   {
-    scanf("%d", &nId);
-    pfnAry[i] = g_fnAry[nId-1];
+    nRandom = rand() % 11 + 10;
+    printf("%d\r\n", nRandom);
   }
-};
+}
