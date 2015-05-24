@@ -1,0 +1,190 @@
+『分析结果』
+===========================================================
+搜索所中文字符正则式 ^[\u4E00-\u9FA5]+$ 关键点都加了注释
+
+42: a=0;//     new-instance v0, Lvk;    # add by xk new 一个vk对象   
+226: a=0;//     invoke-virtual {p0}, Ljp/naver/line/android/activity/registration/StartVerificationBaseActivity;->finish()V   # add by xk 验证完成    
+117: a=0;//     monitor-exit v1    # add by xk 退出线程  
+72: a=0;//     invoke-interface {v0}, Ljava/lang/Runnable;->run()V    # add by xk 创建线程操作  
+357: a=0;//     invoke-static {}, Lbtg;->c()Ljava/lang/String;   #  add by xk 这里返回待请求连接  
+76: a=0;//     #v0=(Reference,Ljava/lang/String;);   # add by xk MD5对手机序列号加密  
+389: a=0;//     invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z   # add by xk http 敏感操作  
+73: a=0;//     invoke-direct {v0}, Ljava/util/Date;-><init>()V     # add by xk 初始化手机序列号  
+84: a=0;//     invoke-static {v1}, Lbbt;->a(Ljava/lang/String;)Ljava/lang/String;   # add by xk MD5加密串号  
+363: a=0;//     move-result-object v0   # add by xk  收集系统版本  
+693: a=0;//     invoke-virtual {v0}, Landroid/telephony/TelephonyManager;->getSimCountryIso()Ljava/lang/String;    # add by xk 拿到国别 getSimCountryIso()  
+701: a=0;//     invoke-virtual {v0}, Ljava/lang/String;->toUpperCase()Ljava/lang/String;    # add by xk 转大写操作  
+1,052: a=0;//     invoke-virtual {v1}, Ljava/lang/StringBuffer;->toString()Ljava/lang/String;    # add by xk  toString() Buf 转 String  
+443: a=0;//     invoke-virtual {v0}, Ljava/io/ByteArrayOutputStream;->toByteArray()[B   # add by xk 把收集的设备信息填写到字节数组中  
+477: a=0;//     invoke-direct {v9}, Lcro;-><init>()V    # add by xk 请求服务器验证 cro 类的构造函数  
+1,266: a=0;//     new-instance v1, Ljava/net/URL;    # add by xk 创建URL对象  
+1,682: a=0;//     invoke-direct {p0, v0, v3, v1, v2}, Lcrj;->a(Lbqa;ZZLjava/lang/Boolean;)V   # add by xk 这里发现写入数据到字节数组中  
+313: a=0;//     #v0=(Reference,Ljava/util/Set;);    # add by xk 验证信息  
+7,589: a=0;//     const-string v3, "startVerification failed: out of sequence response"    # add by xk 验证失败  
+7,592: a=0;//     invoke-direct {v1, v2, v3}, Leel;-><init>(ILjava/lang/String;)V   #  add by xk 验证失败后分支结构  
+168: a=0;//     move-result-object v0    # add by xk 这里返回本机IP和端口准备建立链接  
+184: a=0;//     invoke-virtual {v6, v1, v7}, Ljava/net/Socket;->connect(Ljava/net/SocketAddress;I)V    # add by xk === 验证开始位置 ===  
+227: a=0;//     invoke-virtual {v0}, Legd;->s()Ljava/net/InetSocketAddress;    # add by xk 这里返回阿里云服务器地址  
+253: a=0;//     invoke-virtual {v6, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;    # add by xk 返回当前socket连接的远程地址  
+126: a=0;//     invoke-virtual {v0}, Ljava/net/Socket;->getLocalSocketAddress()Ljava/net/SocketAddress;   # add by xk 这里获取本机地址  
+67: a=0;//     invoke-static {v0}, Lcej;->a(Landroid/content/Context;)Ljava/lang/String;   # add by xk 返回手机序列号  
+78: a=0;//     #v5=(Reference,Ldro;);    # add by xk v5寄存器保存当前设备信息  
+147: a=0;//     #v0=(Reference,Lcrz;);    # add by xk 手机序列号  
+
+LINE 反调试技术：
+1、调试过程中同一手机IMEI序列号频繁验证会被LINE服务器封杀
+   解决方法：在获取手机序列号时候修改获取到的序列号骗过服务器，修改位置BEC_035工程代码中有注释
+2、在调试过程中长时间未验证，服务器会拒掉客户端连接
+   解放方法：删除工程中的请求超时验证部分代码即可(这一步BEC_035工程已完成)
+
+==========================================================
+[MI]
+862873028439963 -> f6dbba3e798b86eb1fccaff349e92602
+[HTC]
+353440060719185 -> 4212a6138b627daf522dac48e6d271b8
+
+『文档整理』
+===========================================================
+
+[调试篇]
+1、IDA Pro 6.5 Debug Android so
+2、Android逆向之IDA动态调试总结
+3、Android抓包方法 - Tcpdump命令+Wireshark
+
+[smali字节码]
+1、apk反汇编之smali语法
+2、Dalvik指令
+3、进入Android Dalvik虚拟机之Dalvik指令集
+
+[DEX脱壳签名校验]
+1、dump法脱壳小记
+2、APK签名校验绕过
+
+[Android hook方法]
+1、Android中的so注入(inject)和挂钩(hook)
+
+
+1、Android Manifest.xml 结构详解、android权限大全
+
+3、Android开发中adb命令的常用方法
+
+
+13、TraceView 数据采集和分析
+
+
+Android逆向分析必备网址大全
+
+
+『快速上手』
+===========================================================
+
+
+1、ApkTool + Eclipse 远程调试APK
+2、学习Smali字节码(文档整理中有介绍)
+3、
+
+[ApkTool + Eclipse 调试 APK]
+1、反编译apk为java代码(加-d参数反编译后为java)
+   java -jar apktool.jar d -d LINE.apk -o out_
+2、在AndroidManifest.xml中设置调试标记
+   在application节点设置属性android:debuggable=”true”
+3、在Activity的入口OnCreate方法前插入调试点
+   a=0;//     invoke-static {}, Landroid/os/Debug;->waitForDebugger()V
+4、对反编译后的java代码重新打包
+   java -jar apktool.jar b -d out_ -o outdebug.apk
+5、通过signapk签名
+   java -jar signapk.jar PubKey.pem PriKey.pk8 outdebug.apk outnew.apk
+6、通过adb shell 启动程序进入等待调试状态
+   adb shell am start -D -W -n jp.naver.line.android/.activity.SplashActivity
+7、添加反编译后的java工程到Eclipse中并下好断点
+   del build/apktool.yml -> create java project -> 
+   load out_文件 -> next -> 修改smali为src
+8、模拟器安装签名后apk在DDMS中查看调试端口
+9、配置远程调试关联反编译后的JAVA代码和调试程序
+
+
+
+『新的解决方案』
+===========================================================
+Smali注入，使用调用分装好的Mark文件打印工程中所有的返回。
+
+正则替换「所有」的move-result -> 打包签名 -> adb logcat -s "XK" > 1.txt -> 会看到明文数据包和密文数据包
+
+从日志中100%可以看到数据包加密前样子和加密后样子，对应日志文件去调试可以很快定位到所有的关键点
+
+给所有的返回值做判断加入Log打印结果：
+move-result 		返回单字节对象
+move-result-wide	返回双字节对象
+move-result-object 	返回对象
+
+使用正则替换所有的move-result字符串为log打印日志然后重新打包签名
+invoke-static {vx}, Lcrack;->log(Ljava/lang/String;)V
+invoke-static {vx}, Lcrack;->I(I)V
+invoke-static {vx, vx+1}, Lcrack;->J(J)V
+===========================================================
+
+# Smali注入代码
+
+.class public LMark;
+.super Ljava/lang/Object;
+.source "Mark.java"
+ 
+.method public static log(Ljava/lang/String;)V 		# 返回结果为STRING
+
+    .locals 1
+    .prologue
+ 
+    const-string v0, "XK"
+    invoke-static {v0, p0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+    return-void
+	
+.end method
+
+.method public static I(I)V 		#	返回结果为INT
+
+	.locals 2
+	.prologue
+	
+	const-string v0, "XK"
+	invoke-static {p0}, Ljava/lang/String;->valueOf(I)Ljava/lang/String; 		# INT 转 STRING
+	move-result-object v1
+	
+	invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String; Ljava/lang/String;)I
+	return-void
+	
+.end method
+
+.method public static J(J)V 		#返回类型为LONG
+
+	.locals 2
+	.prologue
+
+	const-string v0, "XK"
+	invoke-static {p0, p1}, Ljava/lang/String;->valueOf(J)Ljava/lang/String;
+	move-result-object v1
+
+	invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+	return-void
+	
+.end method
+
+
+
+# 调用注入代码方法 vk 为监视寄存器值
+
+invoke-static {vx}, LMark;->log(Ljava/lang/String;)V	# 返回结果为STRING
+invoke-static {vx}, LMark;->I(I)V								# 返回结果为INT
+invoke-static {vx, vx+1}, LMark;->J(J)V						# 返回结果为LONG
+
+
+# V  空类型---仅仅可以用来作为返回类型
+# Z  Boolean 布尔型
+# B  Byte字节型
+# S  Short短整型（16位）
+# C  Char字符型
+# I  Int 整形
+# J  long (64 bits)长整型（64位）
+# F  Float浮点型
+# D  double (64 bits)双精度型（64位）
+
+
