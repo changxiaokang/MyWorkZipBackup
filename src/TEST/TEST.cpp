@@ -1,64 +1,59 @@
 #include <stdafx.h>
 #include <stdio.h>
 
-/*
-  ary表示数组第0个元素地址的指针常量，指针类型为元素类型
-  type ary[M];
-
-  ary[n] <==> *(type*)((int)ary + sizeof(type)*n)
-  type *prt = xxxx;
-  type *ptrTest = xxxx;
-  int n = xxxx;
-
-  (ptr + n) is (int)ptr + sizeof(type)*n;
-  ptr + n <==> (type* const)((int)ptr + sizeof(type)*n);
-  ptr - ptrTest <==> ((int)ptr - (int)ptrTest) / sizeof(type)
-
-  ary[n] == *(ary + n);
-  &ary[n] == ary + n;
-
-  type *ptr = ary;
-  ptr[n] == ary[n];
-  ptr++; // ok
-  ary++; // err, ary is pointer const
-*/
-
-void exchange(int* pa, int* pb);
+int PartionSort(int nArray[], int nStart, int nEnd);
+void  QuickSort(int nArray[], int nStart, int nEnd);
 
 int main()
 {
-  int ary[5] = 
-  {
-    1, 2, 3, 4, 5
-  };
-
-  int* pAry = ary;
-  int i = 3;
-
-  printf("&pAry[3] = %p \t &ary[3] = %p\r\n", &pAry[3], &ary[3]);
-  printf("pAry + 3 = %p \t ary + 3 = %p\r\n", pAry + 3, ary + 3);
-
-  if(*ary == *pAry)
-    puts("*ary == *pAry");
-
-  pAry++;
-  printf("%d\r\n", pAry - ary);
-
-  int a = 2; 
-  int b = 8;
-
-  int* pa = &a;
-  int* pb = &b;
-  exchange(pa, pb);
-
-  printf("a = %d, b = %d\r\n", a, b);
-
-  return 0; 
+  int nTemp[5] = {0};
+  int nArray[] = {2, 5, 4, 6, 0, 1, 3, 7, 2};
+  int nCount = sizeof(nArray)/sizeof(int);
+  
+  QuickSort(nArray, 0, nCount-1);
+  
+  for(int i = 0; i < nCount; i++)
+    printf("%d\r\n", nArray[i]);
+  
+  return 0;
 }
 
-void exchange(int* pa, int* pb)
+int PartionSort(int nArray[], int nStart, int nEnd)
 {
-  int nTemp = *pa;
-  *pa = *pb;
-  *pb = nTemp;
+  int i = 0;
+  int j = 0;
+  int nTemp = 0;
+  int nMiddle = 0;
+  nMiddle = nArray[nEnd];
+  
+  if(nStart < nEnd)
+  {
+    while(j < nEnd)
+    { 
+      if(nArray[j] <= nMiddle)
+      {
+        nTemp = nArray[i];
+        nArray[i] = nArray[j];
+        nArray[j] = nTemp;
+        i++;
+      }
+      j++;
+    }
+    nTemp = nArray[i];
+    nArray[nEnd] = nTemp;
+    nArray[i] = nArray[nEnd];
+  }
+  
+  return i;
+}
+
+void QuickSort(int nArray[], int nStart, int nEnd)
+{
+  int nIndex = 0;
+  if(nStart < nEnd)
+  {
+    nIndex = PartionSort(nArray, nStart, nEnd);
+    QuickSort(nArray, nStart, nIndex-1);
+    QuickSort(nArray, nIndex+1, nEnd);
+  }
 }
