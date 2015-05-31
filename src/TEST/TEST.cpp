@@ -12,9 +12,9 @@ int main()
     {
       for(int k = A; k < Z; k++)
       {
-        if(i == 's')
+        if(i == 'm')
         {
-          printf("it%c%c%c\t", i, j, k);
+          printf("i%c%c%c\t", i, j, k);
         }
       }
     }
