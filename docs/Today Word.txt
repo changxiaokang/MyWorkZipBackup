@@ -1,13 +1,13 @@
 今日计划:
-1、继续学习PHP	OK
-2、完成简单记事本功能	OK
-3、学习Python
-4、熟练使用C宏	OK
+1、学习Python
+2、const static 用途
+
 
 
 明日计划：
 1、自己实现strlen strcopy 等字符串操作函数
 2、C编码规范
+3、学习Python
 
 
 复习内容：
