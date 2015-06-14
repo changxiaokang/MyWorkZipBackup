@@ -2,12 +2,11 @@
 1、学习Python
 2、const static 用途
 
-
-
 明日计划：
 1、自己实现strlen strcopy 等字符串操作函数
 2、C编码规范
 3、学习Python
+http://www.mianwww.com/html/2014/04/20775.html
 
 
 复习内容：
