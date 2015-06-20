@@ -1,15 +1,13 @@
 今日计划:
-1、学习Python
-2、const static 用途
-
-明日计划：
-1、自己实现strlen strcopy 等字符串操作函数
-2、C编码规范
-3、学习Python
-http://www.mianwww.com/html/2014/04/20775.html
+1、学习js
+2、多线程
+3、网络编程
+4、STL常用库
 
 
-复习内容：
-1、STL常用库
-2、套接字编程
-3、多线程编程
+服务器地址 : s7.ssher.net
+
+学习MindJet使用：
+添加同级主题：回车
+添加子主题：Ctrl + 回车
+添加备注：Ctrl + Shift + 回车
