@@ -14,3 +14,5 @@ Tab切换
 添加同级主题：回车
 添加子主题：Ctrl + 回车
 添加备注：Ctrl + Shift + 回车
+
+bjam --without-python --toolset=msvc-9.0 --build-type=complete --prefix="D:\Boost C++ Libraries\boost_1_58_0" stage 
