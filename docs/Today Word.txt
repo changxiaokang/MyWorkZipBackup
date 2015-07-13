@@ -1,4 +1,5 @@
 今日计划:
+
 1、学习js
 2、多线程
 3、网络编程
@@ -6,7 +7,6 @@
 5、实现链表、哈希表
 
 实现点击List单行
-Tab切换
 
 服务器地址 : s7.ssher.net
 
@@ -14,5 +14,3 @@ Tab切换
 添加同级主题：回车
 添加子主题：Ctrl + 回车
 添加备注：Ctrl + Shift + 回车
-
-bjam --without-python --toolset=msvc-9.0 --build-type=complete --prefix="D:\Boost C++ Libraries\boost_1_58_0" stage 
