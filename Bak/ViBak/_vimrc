@@ -3,8 +3,6 @@ source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
-colorscheme unique	" 配色
-
 set diffexpr=MyDiff()
 function MyDiff()
   let opt = '-a --binary '
@@ -30,61 +28,55 @@ function MyDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+
+"配色
+colorscheme unique	
+
+"用两次敲击 j 键来代替 Esc 键
+imap jj <Esc>
+
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
 
 
-" ================================ SET ================================ "
-set lines=45 columns=128	" 设置默认启动窗口大小
-set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI	" 设置字体
+"设置默认启动窗口大小
+set lines=40 columns=120
 
-set number	"设置显示行号
+"设置字体
+set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI
 
-" 设置F3快捷方式隐藏显示菜单栏工具栏
+"设置显示行号
+set number
+
+"设置F3快捷方式隐藏显示菜单栏工具栏
 set go-=m	" 禁止菜单栏加载
 set go-=T	" 禁止工具栏
 
+"设置F2为隐藏打开菜单栏
+map <silent> <F2>
+:if &guioptions =~# 'T' <Bar>
+	set go-=m <Bar>
+	set go-=T <Bar>
+else <Bar>
+	set go+=m <Bar>
+	set go+=T <Bar>
+endif <CR>
 
 
-
-map <silent> <F2> :if &guioptions =~# 'T' <Bar>
-		\set go-=m <Bar>
-		\set go-=T <Bar>
-	\else <Bar>
-		\set go+=m <Bar>
-		\set go+=T <Bar>
-	\endif <CR>
-
-" 设置NERDTree插件呼出快捷键为F3
+"设置NERDTree插件呼出快捷键为F3
 map <F3> :NERDTreeMirror<CR>
 map <F3> :NERDTreeToggle<CR>
 
-" 设置F11全屏切换
+"设置F11全屏切换
 map <F11> <Esc>:call libcallnr("gvimfullscreen.dll", "ToggleFullScreen", 0)<CR> 
 
-" 用两次敲击 j 键来代替 Esc 键
-imap jj <Esc>
-
-" 设置 ctags 索引文件
-set tags+=D:/ctags/tags/cpp
-set tags+=D:/ctags/tags/xk
-set tags+=D:/ctags/tags/SP2
-set tags+=D:/ctags/tags/VC90
-set tags+=D:/ctags/tags/VC98
-" OmniCppComplete
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表
-let OmniCpp_MayCompleteDot = 1   " 输入 .  后自动补全
-let OmniCpp_MayCompleteArrow = 1 " 输入 -> 后自动补全
-let OmniCpp_MayCompleteScope = 1 " 输入 :: 后自动补全
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-" 自动关闭补全窗口
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-
-" 改变自动补全窗口的配色可以在 vimrc 中 Pmenu 是所有项的配色 PmenuSel 是选中项的配色 guibg 和 guifg 分别对应背景色和前景色。
-highlight Pmenu    guibg=darkgrey  guifg=black
-highlight PmenuSel guibg=lightgrey guifg=black
-set completeopt=menuone,menu,longest
-
-" 设置F12为头文件源文件互相切换
+"设置F12为头文件源文件互相切换
 nnoremap <silent> <F12> :A<CR>
+
+"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+
+
+
+
+
+
