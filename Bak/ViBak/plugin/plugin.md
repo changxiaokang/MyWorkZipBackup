@@ -1,20 +1,23 @@
-### a.vim
-ͷ�ļ���Դ�ļ��л�ʹ��
+﻿### a.vim
+头文件和源文件切换使用
 
 ### calendar.vim
-��ʾ����
+显示日历
 
 ### csExplorer.vim
-�г�������ɫ�ļ�
+列出所有配色文件
 
 ### NERD_tree.vim
-��ʾ����Ŀ¼�ṹ
+显示程序目录结构
 
 ### vimcdoc.vim
-VIM���İ���
+VIM中文帮助
 
-AutoComplPop
+### AutoComplPop
+变量自动补全
 
-OmniCppComplete
+### OmniCppComplete
+操作符自动补全
 
-ctags
+### ctags
+建立代码索引文件
