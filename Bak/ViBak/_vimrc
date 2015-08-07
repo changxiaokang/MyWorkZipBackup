@@ -45,6 +45,9 @@ set shiftwidth=2
 "设置自动缩进
 set autoindent
 
+"设置不生成备份文件
+set nobackup
+
 "设置C/C++语言的自动缩进方式
 set cindent
 
