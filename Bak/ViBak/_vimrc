@@ -36,11 +36,10 @@ colorscheme unique
 "|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
 
 "设置tab键为2个空格
-set tabstop=2
-set softtabstop=2
-
-"设置缩进的空格数为2
-set shiftwidth=2
+set tabstop=4     " Tab宽度设置为2个空格
+set shiftwidth=4  " 缩进使用2个空格宽度
+set softtabstop=4 " 设置Tab所占列数为2空格宽度
+set expandtab     " 扩展Tab为空格
 
 "设置自动缩进
 set autoindent
@@ -59,6 +58,9 @@ set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI
 
 "设置显示行号
 set number
+
+"搜索不高亮
+set nohlsearch
 
 " 设置编码方式
 set fileencodings=utf-8,gb2312,gbk,gb18030
