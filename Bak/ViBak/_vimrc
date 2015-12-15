@@ -51,7 +51,7 @@ set nobackup
 set cindent
 
 "设置默认启动窗口大小
-set lines=50 columns=130
+set lines=60 columns=180
 
 "设置字体
 set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI
