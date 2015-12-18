@@ -47,6 +47,9 @@ set autoindent
 "设置不生成备份文件
 set nobackup
 
+"关闭自动换行
+set nowrap
+
 "设置C/C++语言的自动缩进方式
 set cindent
 
