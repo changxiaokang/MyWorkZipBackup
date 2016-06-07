@@ -27,13 +27,15 @@ function MyDiff()
   endif
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
+" ``````````````````````````````````````````````````"
 
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
 
-"配色
+
+" 配色
 colorscheme unique	
+" `````````````````````````````````````````````````````"
 
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+
 
 "设置tab键为2个空格
 set tabstop=4     " Tab宽度设置为2个空格
@@ -54,7 +56,7 @@ set nowrap
 set cindent
 
 "设置默认启动窗口大小
-set lines=60 columns=180
+set lines=35 columns=100
 
 "设置字体
 set guifont=Bitstream_Vera_Sans_Mono:h10:cANSI
@@ -73,8 +75,9 @@ set encoding=prc
 "设置默认启动隐藏显示菜单栏工具栏
 set go-=m " 禁止菜单栏加载
 set go-=T " 禁止工具栏
+" ``````````````````````````````````````````````````"
 
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+
 
 "用两次敲击 j 键来代替 Esc 键
 imap jj <Esc>
@@ -98,4 +101,32 @@ map <F11> <Esc>:call libcallnr("D:\\Vim\\vimfiles\\viimlib\\gvimfullscreen.dll",
 "设置F12为头文件源文件互相切换
 nnoremap <silent> <F12> :A<CR>
 
-"|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||"
+" Ctrl + C 一键保存、编译
+map <c-c> :call CompileCode()<CR>
+
+" Ctrl + R 一键保存、运行
+map <c-r> :call RunCode()<CR>
+" ``````````````````````````````````````````````````"
+
+
+
+func! CompileCode()
+exec "w"
+if &filetype == "c"
+  exec "!cl %<.c "
+elseif &filetype == "cpp"
+  exec "!cl %<.cpp "
+elseif &filetype == "python"
+  exec "!python %<.py"
+endif
+endfunc
+
+func! RunCode()
+exec "w"
+if &filetype == "c" || &filetype == "cpp" || &filetype == "haskell"
+  exec "! %<.exe"
+elseif &filetype == "python"
+  exec "!python %<.py"
+endif
+endfunc
+" ``````````````````````````````````````````````````"
